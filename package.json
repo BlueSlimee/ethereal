@@ -16,6 +16,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "canvas": "^2.7.0",
+    "sharp": "^0.28.1",
     "sirv-cli": "^1.0.0"
   }
 }

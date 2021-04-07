@@ -4,7 +4,7 @@ import requests
 
 def to_jpeg(img):
     io = BytesIO()
-    img.save(io, 'JPEG', quality=75)
+    img.save(io, 'JPEG', quality=95)
     io.seek(0)
     return io
 

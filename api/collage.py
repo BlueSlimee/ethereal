@@ -1,11 +1,11 @@
-from flask import Flask, Response, send_file
+from flask import Flask, Response, send_file, request
 from PIL import Image, ImageDraw, ImageFont
 from os.path import join
 from io import BytesIO
 app = Flask(__name__)
 
 def gen_collage(w, h):
-    img = Image.new('RGB', (w * 100, h * 100), color = 'black')
+    img = Image.new('RGB', (w * 100, h * 100), color = 'white')
     fnt = get_font('montserrat', 'bold', 30)
     draw = ImageDraw.draw(img)
     draw.text((10, 10), "paguei um boquete pra jesus", font=fnt, fill=(0, 0, 0))
@@ -13,7 +13,7 @@ def gen_collage(w, h):
     return to_jpeg(img)
 
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+@app.route('/<path:path>', methods=['GET'])
 def root(path):
     return send_file(gen_collage(request.args.get('w'), request.args.get('h')), mimetype='image/jpeg')
 

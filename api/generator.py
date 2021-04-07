@@ -12,9 +12,11 @@ def gen_collage(w, h):
 
     return to_jpeg(img)
 
-@app.route('/collage')
-def collage():
-    return send_file(gen_collage(request.args.get('w'), request.args.get('h'), mimetype='image/jpeg'))
+@app.route('/')
+def root():
+    if request.args.get('r') == 'collage':
+        return send_file(gen_collage(request.args.get('w'), req\
+    uest.args.get('h'), mimetype='image/jpeg'))
 
 def to_jpeg(img):
     io = BytesIO()

@@ -1,4 +1,4 @@
-const { createCanvas, registerFont } = require('node-canvas')
+const { createCanvas, registerFont } = require('canvas')
 registerFont('../public/fonts/montserrat/Montserrat-Bold.ttf', { family: 'Montserrat', weight: 'bold' })
 module.exports = async (req, res) => {
   const { name = "jesus" } = req.query

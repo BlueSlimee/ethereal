@@ -15,7 +15,7 @@ def gen_collage(w, h):
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>', methods=['GET'])
 def root(path):
-    return send_file(gen_collage(request.args.get('w'), request.args.get('h')), mimetype='image/jpeg')
+    return send_file(gen_collage(int(request.args.get('w')), int(request.args.get('h'))), mimetype='image/jpeg')
 
 def to_jpeg(img):
     io = BytesIO()

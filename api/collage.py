@@ -7,7 +7,7 @@ app = Flask(__name__)
 def gen_collage(w, h):
     img = Image.new('RGB', (w * 100, h * 100))
     fnt = get_font('montserrat', 'bold', 30)
-    draw = ImageDraw.draw(img)
+    draw = ImageDraw.Draw(img)
     draw.text((10, 10), "paguei um boquete pra jesus", font=fnt, fill=(1, 1, 1))
 
     return to_jpeg(img)

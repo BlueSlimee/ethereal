@@ -12,10 +12,15 @@ def gen_collage(w, h):
 
     return to_jpeg(img)
 
-@app.route('/')
+@app.route('/', defaults={'path': ''})
 def root():
     if request.args.get('r') == 'collage':
         return send_file(gen_collage(request.args.get('w'), request.args.get('h')), mimetype='image/jpeg')
+
+@app.route('/', defaults={'path': ''})
+@app.route('/collage')
+def test():
+    return Response("jesuuus")
 
 def to_jpeg(img):
     io = BytesIO()

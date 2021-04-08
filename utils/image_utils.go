@@ -23,5 +23,5 @@ func GetImage(url string) *image.Image {
 }
 
 func LoadAndUseFont(ctx *gg.Context, family, style string, size float64) {
-  ctx.LoadFontFace("../public/fonts/"+ family +"/"+ style +".ttf", size)
+  ctx.LoadFontFace("./public/fonts/"+ family +"/"+ style +".ttf", size)
 }

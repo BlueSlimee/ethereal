@@ -1,33 +1,50 @@
 package generator
 
-import(
-	"image"
-	"github.com/fogleman/gg"
+import (
 	"github.com/disintegration/imaging"
+	"github.com/fogleman/gg"
+	"image"
 	"lastgram.xyz/ethereal/utils"
 )
 
-func Np(url string) image.Image {
-	dc := gg.NewContext(450, 150)
-	i := utils.GetImage("https://lastfm.freetls.fastly.net/i/u/500x500/"+ url +".jpg")
+func Np(track, album, artist, scrobbles, url string) image.Image {
+	dc := gg.NewContext(1500, 500)
+	i := utils.GetImage("https://lastfm.freetls.fastly.net/i/u/500x500/" + url + ".png")
 	if i == nil {
 		i = utils.GetImage("https://lastgram.vercel.app/last/missingtrack.png")
 	}
-	
+
 	// COVER
 	{
-		c := imaging.Resize(*i, 150, 150, imaging.Linear)
-		dc.DrawImage(c, 0, 0)
+		dc.DrawImage(*i, 0, 0)
 	}
 	// BLURRED BG
 	{
-		bg := imaging.Fill(*i, 300, 150, imaging.Center, imaging.NearestNeighbor)
-		bg = imaging.Blur(bg, 4.0)
-		dc.DrawImage(bg, 150, 0)
-		dc.SetRGBA(0, 0, 0, 100)
-		dc.DrawRectangle(150, 0, 300, 150)
+		bg := imaging.Fill(*i, 1000, 500, imaging.Center, imaging.NearestNeighbor)
+		bg = imaging.Blur(bg, 5.0)
+		dc.DrawImage(bg, 500, 0)
+		dc.SetRGBA(0, 0, 0, 150)
+		dc.DrawRectangle(500, 0, 1000, 500)
 		dc.Fill()
 	}
-
+  // TEXT
+  blockBase := 170.0
+  blockBaseX := 530.0
+  {
+    dc.SetRGB(1, 1, 1)
+    utils.LoadAndUseFont(dc, "montserrat", "bold", 60)
+    dc.DrawString(track, blockBaseX, blockBase)
+    
+    utils.LoadAndUseFont(dc, "montserrat", "medium", 55)
+    dc.DrawString(album, blockBaseX, blockBase + 60)
+    
+    dc.SetRGB(0.7, 0.7, 0.7)
+    utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 55)
+    dc.DrawString(artist, blockBaseX, blockBase + 120)
+    
+    dc.SetRGB(1, 1, 1)
+    utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 55)
+    dc.DrawString(scrobbles, blockBaseX, blockBase + 240)
+  }
 	return dc.Image()
 }

@@ -4,10 +4,23 @@ import (
 	"github.com/disintegration/imaging"
 	"github.com/fogleman/gg"
 	"image"
+	"io/ioutil"
 	"lastgram.xyz/ethereal/utils"
 )
 
 func Np(track, album, artist, scrobbles, url string) image.Image {
+  files, err := ioutil.ReadDir("./")
+  if err != nil {
+    panic(err)
+  }
+  filestwo, err := ioutil.ReadDir("../")
+  if err != nil {
+    panic(err)
+  }
+  h := make([]string, 0)
+  for _, f := range files { h = append(h, f.Name()) }
+  for _, f := range filestwo { h = append(h, f.Name()) }
+  panic(h)
 	dc := gg.NewContext(1500, 500)
 	i := utils.GetImage("https://lastfm.freetls.fastly.net/i/u/500x500/" + url + ".png")
 	if i == nil {
@@ -43,7 +56,6 @@ func Np(track, album, artist, scrobbles, url string) image.Image {
     dc.DrawString(artist, blockBaseX, blockBase + 120)
     
     dc.SetRGB(1, 1, 1)
-    utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 55)
     dc.DrawString(scrobbles, blockBaseX, blockBase + 240)
   }
 	return dc.Image()

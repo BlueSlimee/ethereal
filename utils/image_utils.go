@@ -1,11 +1,11 @@
 package utils
 
 import (
+	"github.com/fogleman/gg"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
 	"net/http"
-	"github.com/fogleman/gg"
 	"os"
 )
 
@@ -24,7 +24,7 @@ func GetImage(url string) *image.Image {
 }
 
 func LoadAndUseFont(ctx *gg.Context, family, style string, size float64) {
-  ctx.LoadFontFace(GetPath() +"/_files/"+ family +"/"+ style +".ttf", size)
+	ctx.LoadFontFace(GetPath()+"/_files/"+family+"/"+style+".ttf", size)
 }
 
 func GetPath() string {

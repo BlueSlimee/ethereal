@@ -10,7 +10,7 @@ import (
 
 func ReplyWithImage(w http.ResponseWriter, img image.Image) {
 	buffer := new(bytes.Buffer)
-	if err := jpeg.Encode(buffer, img, &jpeg.Options{Quality:95}); err != nil {
+	if err := jpeg.Encode(buffer, img, &jpeg.Options{Quality: 95}); err != nil {
 		http.Error(w, "Failure encoding image to JPEG buffer", http.StatusInternalServerError)
 		return
 	}

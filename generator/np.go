@@ -27,24 +27,24 @@ func Np(track, album, artist, scrobbles, url string) image.Image {
 		dc.DrawRectangle(500, 0, 1000, 500)
 		dc.Fill()
 	}
-  // TEXT
-  blockBase := 120.0
-  blockBaseX := 530.0
-  {
-    dc.SetRGB(1, 1, 1)
-    utils.LoadAndUseFont(dc, "montserrat", "bold", 60)
-    dc.DrawString(track, blockBaseX, blockBase)
-    
-    utils.LoadAndUseFont(dc, "montserrat", "medium", 55)
-    dc.DrawString(album, blockBaseX, blockBase + 75)
-    
-    dc.SetRGB(0.7, 0.7, 0.7)
-    utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 55)
-    dc.DrawString(artist, blockBaseX, blockBase + 140)
-    
-    utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 48)
-    dc.SetRGB(1, 1, 1)
-    dc.DrawString(scrobbles, blockBaseX, blockBase + 325)
-  }
+	// TEXT
+	blockBase := 120.0
+	blockBaseX := 530.0
+	{
+		dc.SetRGB(1, 1, 1)
+		utils.LoadAndUseFont(dc, "montserrat", "bold", 60)
+		dc.DrawString(track, blockBaseX, blockBase)
+
+		utils.LoadAndUseFont(dc, "montserrat", "medium", 55)
+		dc.DrawString(album, blockBaseX, blockBase+75)
+
+		dc.SetRGB(0.7, 0.7, 0.7)
+		utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 55)
+		dc.DrawString(artist, blockBaseX, blockBase+140)
+
+		utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 48)
+		dc.SetRGB(1, 1, 1)
+		dc.DrawString(scrobbles, blockBaseX, blockBase+325)
+	}
 	return dc.Image()
 }

@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/gen.go": {
-      "includeFiles": "**/*.ttf"
+      "includeFiles": "**/**/*.ttf"
     }
   }
 }

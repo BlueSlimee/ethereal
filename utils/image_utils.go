@@ -6,6 +6,7 @@ import (
 	_ "image/png"
 	"net/http"
 	"github.com/fogleman/gg"
+	"os"
 )
 
 func GetImage(url string) *image.Image {
@@ -23,5 +24,13 @@ func GetImage(url string) *image.Image {
 }
 
 func LoadAndUseFont(ctx *gg.Context, family, style string, size float64) {
-  ctx.LoadFontFace("./fonts/"+ family +"/"+ style +".ttf", size)
+  ctx.LoadFontFace(GetPath() +"/_files/"+ family +"/"+ style +".ttf", size)
+}
+
+func GetPath() string {
+	pwd, err := os.Getwd()
+	if err != nil {
+		panic(err) // if this goes wrong oop
+	}
+	return pwd
 }

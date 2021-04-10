@@ -1,12 +1,13 @@
 package api
 
 import (
-	"lastgram.xyz/ethereal/generator"
-	"lastgram.xyz/ethereal/utils"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+
+	"lastgram.xyz/ethereal/generator"
+	"lastgram.xyz/ethereal/utils"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -16,7 +17,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	http.Error(w, "Missing parameters", http.StatusBadRequest)
-	return
+
 }
 
 func Check(w http.ResponseWriter, p url.Values) {

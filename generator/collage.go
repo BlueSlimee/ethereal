@@ -12,7 +12,7 @@ func Collage(list []string, w, h int) image.Image {
 	op := NewPIO(w*400, h*400)
 	x := 0
 	y := 0
-	
+
 	for _, i := range list {
 		a := strings.Split(i, "-")
 		op.RunTaskWithData(func(channel chan TaskResponse, b interface{}) {
@@ -31,24 +31,24 @@ func Collage(list []string, w, h int) image.Image {
 			scrb := 370.0
 			posi := 2
 			if len(a) == 4 {
-			  posi = 3
-			  scrb = 390.0
-			  utils.LoadAndUseFont(dc, "montserrat", "semi-bold", 18)
+				posi = 3
+				scrb = 390.0
+				utils.LoadAndUseFont(dc, "montserrat", "semi-bold", 18)
 				dc.SetRGB(1, 1, 1)
 				utils.DrawStringOutlined(dc, a[2], 10, 370)
 			}
-			
+
 			if len(a) <= 4 && len(a) > 2 {
 				utils.LoadAndUseFont(dc, "montserrat", "medium-italic", 18)
 				dc.SetRGB(0.9, 0.9, 0.9)
 				j := "scrobbles"
 				item := a[posi]
 				if item == "1" {
-				  j = "scrobble"
+					j = "scrobble"
 				}
-				utils.DrawStringOutlined(dc, item +" "+ j, 10, scrb)
+				utils.DrawStringOutlined(dc, item+" "+j, 10, scrb)
 			}
-      
+
 			channel <- TaskResponse{
 				Image:  dc.Image(),
 				DrawAt: b.([2]int),

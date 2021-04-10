@@ -28,9 +28,9 @@ func LoadAndUseFont(ctx *gg.Context, family, style string, size float64) {
 }
 
 func DrawStringOutlined(dc *gg.Context, s string, xa, ya float64) {
-  dc.SetRGB(0, 0, 0)
-  n := 4
-  for dy := -n; dy <= n; dy++ {
+	dc.SetRGB(0, 0, 0)
+	n := 4
+	for dy := -n; dy <= n; dy++ {
 		for dx := -n; dx <= n; dx++ {
 			if dx*dx+dy*dy >= n*n {
 				// give it rounded corners

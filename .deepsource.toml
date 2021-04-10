@@ -1,18 +1,13 @@
 version = 1
 
 [[analyzers]]
-
 name = "go"
 
 enabled = true
-
   [analyzers.meta]
-
   import_paths = ["lastgram.xyz/ethereal"]
 
 [[analyzers]]
-
 name = "javascript"
-
 enabled = true
 

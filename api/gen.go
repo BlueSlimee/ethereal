@@ -5,6 +5,8 @@ import (
 	"lastgram.xyz/ethereal/utils"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -36,12 +38,30 @@ func Check(w http.ResponseWriter, p url.Values) {
 			http.Error(w, "Missing parameters", http.StatusBadRequest)
 			return
 		}
-		if i := p.Get("sc"); i == "" {
+
+		img := generator.Np(p.Get("tr"), p.Get("al"), p.Get("ar"), p.Get("im"))
+		utils.ReplyWithImage(w, img)
+	case "col":
+		if i := p.Get("ls"); i == "" {
 			http.Error(w, "Missing parameters", http.StatusBadRequest)
 			return
 		}
-		img := generator.Np(p.Get("tr"), p.Get("al"), p.Get("ar"), p.Get("sc"), p.Get("im"))
+		if i := p.Get("w"); i == "" {
+			http.Error(w, "Missing parameters", http.StatusBadRequest)
+			return
+		}
+		if i := p.Get("h"); i == "" {
+			http.Error(w, "Missing parameters", http.StatusBadRequest)
+			return
+		}
+		img := generator.Collage(strings.Split(p.Get("ls"), ","), wa(strconv.Atoi(p.Get("w"))), wa(strconv.Atoi(p.Get("h"))))
 		utils.ReplyWithImage(w, img)
-		return
 	}
+}
+
+func wa(a int, err error) int {
+	if err != nil {
+		return 0
+	}
+	return a
 }

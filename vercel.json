@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/*.go": {
-      "includeFiles": "_files/**"
+      "includeFiles": "_files/**/*"
     }
   }
 }
